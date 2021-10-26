@@ -34,14 +34,18 @@ const items = [
 
 const Categories = () => {
 	return (
-		<ScrollView horizontal showsHorizontalScrollIndicator={false}>
-			{/* loop starts here */}
-			<View style={styles.container}>
-				<Image source={items[0].image} style={styles.image} />
-				<Text style={styles.text}>{items[0].text}</Text>
-			</View>
-			{/* loop ends here */}
-		</ScrollView>
+		<View style={{ backgroundColor: 'white', paddingVertical: 10, paddingLeft: 20 }}>
+			<ScrollView horizontal showsHorizontalScrollIndicator={false}>
+				{/* loop starts here */}
+				{items.map((item, index) => (
+					<View key={index} style={styles.container}>
+						<Image source={item.image} style={styles.image} />
+						<Text style={styles.text}>{item.text}</Text>
+					</View>
+				))}
+				{/* loop ends here */}
+			</ScrollView>
+		</View>
 	);
 };
 
