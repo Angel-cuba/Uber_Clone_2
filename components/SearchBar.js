@@ -3,34 +3,57 @@ import { StyleSheet, Text, View } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { API_KEY } from '@env';
+
+// const API_KEY = 'AIzaSyBWvVGWsOD0fem0ox5nnQUmll69eRgQn7k';
+//const API_KEY = 'AIzaSyCjbU5ofVgDbDi42jdRKSAkqBc0FbYk88k';
+console.log(API_KEY);
 
 const SearchBar = () => {
 	return (
 		<View style={styles.container}>
-			<GooglePlacesAutocomplete
-				placeholder="Search your place...."
-				styles={{
-					textInput: {
-						backgroundColor: '#eee',
-						borderRadius: 20,
-						fontWeight: '700',
-						marginTop: 7,
-					},
-					textInputContainer: {
-						backgorungColor: '#eee',
-						borderRadius: 30,
-						flexDirection: 'row',
-						alignItems: 'center',
-						marginRight: 10,
-					},
-				}}
-				// renderLeftButton={() => (
+			<View>
+				<GooglePlacesAutocomplete
+					query={{ key: API_KEY, language: 'en' }}
+					nearbyPlacesAPI="GooglePlacesSearch"
+					placeholder="Search your place...."
+					debounce={400}
+					returnKeyType={'default'}
+					fetchDetails={true}
+					minLength={2}
+					styles={{
+						container: {
+							flex: 0,
+						},
+						textInput: {
+							backgroundColor: '#eee',
+							borderRadius: 20,
+							fontWeight: '700',
+							marginTop: 7,
+						},
+						textInputContainer: {
+							backgorungColor: '#eee',
+							borderRadius: 30,
+							flexDirection: 'row',
+							alignItems: 'center',
+							marginRight: 10,
+						},
+					}}
+					onPress={(data, details = null) => {
+						// 'details' is provided when fetchDetails = true
+						console.log(data, details);
+					}}
+					minLength={2}
+					autoFocus={false}
+				/>
+			</View>
+
+			{/* // renderLeftButton={() => (
 				// 	<View style={{ marginLeft: 10 }}>
 				// 		<Ionicons name="location-sharp" size={24} color="black" />
 				// 	</View>
 				// )}
-				//renderRightButton={() => <Ionicons name="location-sharp" size={24} color="black" />}
-			/>
+				//renderRightButton={() => <Ionicons name="location-sharp" size={24} color="black" />} */}
 		</View>
 	);
 };
