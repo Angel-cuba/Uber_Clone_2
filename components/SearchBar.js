@@ -5,10 +5,6 @@ import { Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { API_KEY } from '@env';
 
-// const API_KEY = 'AIzaSyBWvVGWsOD0fem0ox5nnQUmll69eRgQn7k';
-//const API_KEY = 'AIzaSyCjbU5ofVgDbDi42jdRKSAkqBc0FbYk88k';
-console.log(API_KEY);
-
 const SearchBar = () => {
 	return (
 		<View style={styles.container}>
