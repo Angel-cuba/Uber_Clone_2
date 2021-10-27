@@ -11,7 +11,7 @@ const YELP_API_KEY =
 
 const Home = () => {
 	const [restaurantData, setRestaurantData] = useState(localRestaurants);
-	console.log(restaurantData);
+	// console.log(restaurantData);
 
 	const getRestaurantFromYelp = () => {
 		const yelpUrl = 'https://api.yelp.com/v3/businesses/search?term=restaurant&location=Turku';
