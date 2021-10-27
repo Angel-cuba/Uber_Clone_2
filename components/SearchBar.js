@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { API_KEY } from '@env';
 
-const SearchBar = () => {
+const SearchBar = ({ cityHandler }) => {
 	return (
 		<View style={styles.container}>
 			<View>
@@ -37,7 +37,10 @@ const SearchBar = () => {
 					}}
 					onPress={(data, details = null) => {
 						// 'details' is provided when fetchDetails = true
-						console.log(data, details);
+						// console.log(data.description);.split(',')[0];
+						const city = data.description;
+						console.log(city);
+						cityHandler(city);
 					}}
 					minLength={2}
 					autoFocus={false}

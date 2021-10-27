@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View, Platform, TouchableOpacity } from 'react
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Restaurants = ({ restaurantData }) => {
-	// console.log(restaurantData);
+	console.log('------------->', restaurantData[1]);
 	return (
 		<TouchableOpacity activeOpacity={0.9} style={{ marginBottom: 30 }}>
 			{restaurantData.map((restaurant, index) => (

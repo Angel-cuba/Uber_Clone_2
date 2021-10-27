@@ -11,10 +11,11 @@ const YELP_API_KEY =
 
 const Home = () => {
 	const [restaurantData, setRestaurantData] = useState(localRestaurants);
-	// console.log(restaurantData);
+	const [city, setCity] = useState('San Francisco');
+	const [activeTab, setActiveTab] = useState('Delivery');
 
 	const getRestaurantFromYelp = () => {
-		const yelpUrl = 'https://api.yelp.com/v3/businesses/search?term=restaurant&location=Turku';
+		const yelpUrl = `https://api.yelp.com/v3/businesses/search?term=restaurant&location=${city}`;
 
 		const apiOptions = {
 			headers: {
@@ -24,18 +25,25 @@ const Home = () => {
 
 		return fetch(yelpUrl, apiOptions)
 			.then((response) => response.json())
-			.then((json) => setRestaurantData(json.businesses));
+			.then((json) =>
+				setRestaurantData(
+					json.businesses.filter(
+						(business) => business.transactions.includes(activeTab.toLowerCase())
+						//console.log(business.transactions.includes(activeTab.toLowerCase()))
+					)
+				)
+			);
 	};
 
 	useEffect(() => {
 		getRestaurantFromYelp();
-	}, []);
+	}, [city, activeTab]);
 
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.insideContainer}>
-				<HeaderTab />
-				<SearchBar />
+				<HeaderTab activeTab={activeTab} setActiveTab={setActiveTab} />
+				<SearchBar cityHandler={setCity} />
 			</View>
 
 			<ScrollView showsVerticalScrollIndicator={false}>
