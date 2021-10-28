@@ -2,11 +2,22 @@ import React from 'react';
 import { Image } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
-const image =
-	'https://res.cloudinary.com/dqaerysgb/image/upload/v1635267337/bar-kitchen_i9c4ns.jpg';
+const yelpRestaurantInfo = {
+	name: 'Famous places around the world',
+	image: 'https://res.cloudinary.com/dqaerysgb/image/upload/v1635267337/bar-kitchen_i9c4ns.jpg',
+	reviews: '1499',
+	price: '££',
+	rating: 4.5,
+	categories: [{ title: 'Nice food' }, { title: 'Comfort food' }],
+};
 
-const title = 'Famous places';
-const description = 'Bar Comfort';
+const { name, image, price, reviews, rating, categories } = yelpRestaurantInfo;
+
+const formattedCategories = categories.map((cat) => cat.title).join(' - ');
+
+const description = `${formattedCategories} ${
+	price ? ' - ' + price : ''
+} - 💳 - ${rating} 🎇 (${reviews}+)`;
 
 const About = () => {
 	return (
@@ -14,7 +25,7 @@ const About = () => {
 			{/* Restaurant Image */}
 			<RestaurantImage image={image} />
 			{/* Restaurant Title */}
-			<RestaurantTitle title={title} />
+			<RestaurantName name={name} />
 			{/* Restaurant description */}
 			<RestaurantDescription description={description} />
 		</View>
@@ -22,10 +33,10 @@ const About = () => {
 };
 
 const RestaurantImage = (props) => (
-	<Image source={{ uri: props.image }} style={{ width: '100%', height: 200 }} />
+	<Image source={{ uri: props.image }} style={{ width: '100%', height: 180 }} />
 );
 
-const RestaurantTitle = (props) => (
+const RestaurantName = (props) => (
 	<Text
 		style={{
 			fontSize: 30,
@@ -33,7 +44,7 @@ const RestaurantTitle = (props) => (
 			marginTop: 10,
 		}}
 	>
-		{props.title}
+		{props.name}
 	</Text>
 );
 const RestaurantDescription = (props) => (
