@@ -3,7 +3,6 @@ import { Image, ScrollView, TouchableOpacity } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { food } from '../../constExport/arrayRestaurantDetails';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 const MenuItems = ({ navigation }) => {
@@ -19,9 +18,6 @@ const MenuItems = ({ navigation }) => {
 						<Foodinfo food={foodItem} />
 						<FoodImage food={foodItem} />
 					</View>
-					{/* <TouchableOpacity style={{ marginLeft: 10 }} onPress={() => navigation.goBack()}>
-						<MaterialCommunityIcons name="arrow-left" size={25} color="silver" />
-					</TouchableOpacity> */}
 
 					<Divider width={0.5} orientation="vertical" style={{ marginHorizontal: 20 }} />
 				</View>
