@@ -1,20 +1,20 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { StyleSheet, Text, View, Platform } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
-const yelpRestaurantInfo = {
-	name: 'Famous places near you',
-	image: 'https://res.cloudinary.com/dqaerysgb/image/upload/v1635267337/bar-kitchen_i9c4ns.jpg',
-	reviews: '1499',
-	price: '££',
-	rating: 4.5,
-	categories: [{ title: 'Nice food' }, { title: 'Comfort food' }],
-};
+// const yelpRestaurantInfo = {
+// 	name: 'Famous places near you',
+// 	image: 'https://res.cloudinary.com/dqaerysgb/image/upload/v1635267337/bar-kitchen_i9c4ns.jpg',
+// 	reviews: '1499',
+// 	price: '££',
+// 	rating: 4.5,
+// 	categories: [{ title: 'Nice food' }, { title: 'Comfort food' }],
+// };
 
 // const { name, image, price, reviews, rating, categories } = yelpRestaurantInfo;
 
-const About = ({ route, navigation }) => {
+const About = ({ route }) => {
 	const { name, image, price, reviews, rating, categories } = route.params;
 	const formattedCategories = categories.map((cat) => cat.title).join(' - ');
 
@@ -22,22 +22,25 @@ const About = ({ route, navigation }) => {
 		price ? ' - ' + price : ''
 	} - 💳 - ${rating} 🎇 (${reviews}+)`;
 	return (
+		// <SafeAreaView>
 		<View>
 			{/* Restaurant Image */}
 			<RestaurantImage image={image} />
-			<TouchableOpacity style={{ marginLeft: 10 }} onPress={() => navigation.goBack()}>
-				<MaterialCommunityIcons name="arrow-left" size={25} color="silver" />
-			</TouchableOpacity>
+
 			{/* Restaurant Title */}
 			<RestaurantName name={name} />
 			{/* Restaurant description */}
 			<RestaurantDescription description={description} />
 		</View>
+		// </SafeAreaView>
 	);
 };
 
 const RestaurantImage = (props) => (
-	<Image source={{ uri: props.image }} style={{ width: '100%', height: 200 }} />
+	<Image
+		source={{ uri: props.image }}
+		style={{ width: '100%', height: Platform.isPad ? 300 : 200 }}
+	/>
 );
 
 const RestaurantName = (props) => (
