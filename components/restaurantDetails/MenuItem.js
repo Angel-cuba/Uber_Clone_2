@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { food } from '../../constExport/arrayRestaurantDetails';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 const MenuItems = ({ navigation }) => {
 	return (
@@ -11,12 +12,16 @@ const MenuItems = ({ navigation }) => {
 			{food.map((foodItem, index) => (
 				<View key={index} style={styles.mainContent}>
 					<View style={styles.menuItemContainer}>
+						<BouncyCheckbox
+							iconStyle={{ borderColor: 'silver', borderRadius: 0 }}
+							fillColor="green"
+						/>
 						<Foodinfo food={foodItem} />
 						<FoodImage food={foodItem} />
 					</View>
-					<TouchableOpacity style={{ marginLeft: 10 }} onPress={() => navigation.goBack()}>
+					{/* <TouchableOpacity style={{ marginLeft: 10 }} onPress={() => navigation.goBack()}>
 						<MaterialCommunityIcons name="arrow-left" size={25} color="silver" />
-					</TouchableOpacity>
+					</TouchableOpacity> */}
 
 					<Divider width={0.5} orientation="vertical" style={{ marginHorizontal: 20 }} />
 				</View>
@@ -44,7 +49,7 @@ const FoodImage = (props) => (
 export default MenuItems;
 
 const styles = StyleSheet.create({
-	mainContent: {},
+	mainContent: { flex: 1 },
 	menuItemContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
