@@ -19,4 +19,18 @@ export const food = [
 		price: '£17.60',
 		image: 'https://res.cloudinary.com/dqaerysgb/image/upload/v1635360680/indian-food_keaevt.jpg',
 	},
+	{
+		title: 'La cubana del sabor',
+		description:
+			"There's no denying that Cuban food is a favorite. There's that shredded beef dish you still dream about from your trip to Miami🍔. ",
+		price: '£107.60',
+		image: 'https://res.cloudinary.com/dqaerysgb/image/upload/v1635399087/Cuban-Food-1_mydd1f.jpg',
+	},
+	{
+		title: 'Pabellon Criollo',
+		description:
+			'Pabellón Criollo 🥗🥪 is said to be representing the union of the Europeans, Africans and Indigenous, which all met in Venezuela after Columbus arrived in the Americas. ',
+		price: '£57.60',
+		image: 'https://res.cloudinary.com/dqaerysgb/image/upload/v1635399413/picWmxBlt_fx19jk.jpg',
+	},
 ];
