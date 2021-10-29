@@ -11,8 +11,8 @@ const RestaurantDetail = ({ route, navigation }) => {
 		<View>
 			<About route={route} />
 			<Divider width={0.8} style={{ marginVertical: 10 }} />
-			<View style={{ height: Platform.isPad ? 730 : 450 }}>
-				<MenuItems navigation={navigation} />
+			<View style={{ height: Platform.isPad ? 730 : 491 }}>
+				<MenuItems navigation={navigation} restaurantName={route.params.name} />
 
 				<ViewCart navigation={navigation} restaurantName={route.params.name} />
 			</View>

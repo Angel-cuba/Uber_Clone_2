@@ -39,14 +39,14 @@ const About = ({ route }) => {
 const RestaurantImage = (props) => (
 	<Image
 		source={{ uri: props.image }}
-		style={{ width: '100%', height: Platform.isPad ? 300 : 200 }}
+		style={{ width: '100%', height: Platform.isPad ? 300 : 205 }}
 	/>
 );
 
 const RestaurantName = (props) => (
 	<Text
 		style={{
-			fontSize: 30,
+			fontSize: 23,
 			fontWeight: '700',
 			marginTop: 10,
 			marginHorizontal: 10,
