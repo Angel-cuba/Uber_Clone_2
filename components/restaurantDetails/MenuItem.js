@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, ScrollView, TouchableOpacity } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { food } from '../../constExport/arrayRestaurantDetails';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
-const MenuItems = ({ navigation }) => {
+import { useDispatch, useSelector } from 'react-redux';
+
+const MenuItems = ({ restaurantName }) => {
+	const dispatch = useDispatch();
+	const selectItem = (item, checkboxValue) =>
+		dispatch({
+			type: 'ADD_TO_CART',
+			payload: { ...item, restaurantName: restaurantName, checkboxValue: checkboxValue },
+		});
+
+	const cartItems = useSelector((state) => state.cartReducer.selectedItems.items);
+
+	const isFoodInCart = (foodItem, cartItems) =>
+		Boolean(cartItems.find((cartItem) => cartItem.title === foodItem.title));
+
 	return (
 		<ScrollView showsVerticalScrollIndicator={false}>
 			{food.map((foodItem, index) => (
@@ -14,6 +28,8 @@ const MenuItems = ({ navigation }) => {
 						<BouncyCheckbox
 							iconStyle={{ borderColor: 'silver', borderRadius: 0 }}
 							fillColor="green"
+							isChecked={isFoodInCart(foodItem, cartItems)}
+							onPress={(checkboxValue) => selectItem(foodItem, checkboxValue)}
 						/>
 						<Foodinfo food={foodItem} />
 						<FoodImage food={foodItem} />
