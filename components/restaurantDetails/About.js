@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { StyleSheet, Text, View, Platform } from 'react-native';
-import { SafeAreaView } from 'react-native';
 
 // const yelpRestaurantInfo = {
 // 	name: 'Famous places near you',
@@ -57,7 +56,16 @@ const RestaurantName = (props) => (
 	</Text>
 );
 const RestaurantDescription = (props) => (
-	<Text style={{ fontSize: 16, marginHorizontal: 15, fontWeight: '400', marginTop: 10 }}>
+	<Text
+		style={{
+			fontSize: 16,
+			alignSelf: 'center',
+			fontWeight: '400',
+			marginTop: 10,
+			backgroundColor: 'rgba(0,0,0,.0451)',
+			textAlign: 'center',
+		}}
+	>
 		{props.description}
 	</Text>
 );
