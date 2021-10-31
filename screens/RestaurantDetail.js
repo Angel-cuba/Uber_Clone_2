@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import About from '../components/restaurantDetails/About';
 import { Divider } from 'react-native-elements';
 import MenuItems from '../components/restaurantDetails/MenuItem';
@@ -11,7 +11,7 @@ const RestaurantDetail = ({ route, navigation }) => {
 		<View>
 			<About route={route} />
 			<Divider width={0.8} style={{ marginVertical: 10 }} />
-			<View style={{ height: Platform.isPad ? 730 : 491 }}>
+			<View style={{ height: Platform.isPad ? 640 : 475 }}>
 				<MenuItems navigation={navigation} restaurantName={route.params.name} />
 
 				<ViewCart navigation={navigation} restaurantName={route.params.name} />
