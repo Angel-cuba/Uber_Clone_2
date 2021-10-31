@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Image, ScrollView, Platform } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { food } from '../../constExport/arrayRestaurantDetails';
@@ -26,7 +26,8 @@ const MenuItems = ({ restaurantName }) => {
 				<View key={index} style={styles.mainContent}>
 					<View style={styles.menuItemContainer}>
 						<BouncyCheckbox
-							iconStyle={{ borderColor: 'silver', borderRadius: 0 }}
+							iconStyle={{ borderColor: '#0bab64', borderRadius: Platform.isPad ? 13 : 4 }}
+							size={Platform.isPad ? 35 : 26}
 							fillColor="green"
 							isChecked={isFoodInCart(foodItem, cartItems)}
 							onPress={(checkboxValue) => selectItem(foodItem, checkboxValue)}
@@ -53,7 +54,11 @@ const FoodImage = (props) => (
 	<View>
 		<Image
 			source={{ uri: props.food.image }}
-			style={{ width: 100, height: 100, borderRadius: 10 }}
+			style={{
+				width: Platform.isPad ? 150 : 100,
+				height: Platform.isPad ? 130 : 100,
+				borderRadius: 10,
+			}}
 		/>
 	</View>
 );
@@ -65,16 +70,19 @@ const styles = StyleSheet.create({
 	menuItemContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		margin: 20,
+		marginRight: Platform.isPad ? 30 : 20,
+		paddingVertical: 20,
+		paddingLeft: Platform.isPad ? 30 : 20,
 	},
 	foodInfo: {
-		width: 240,
+		width: Platform.isPad ? 350 : 220,
 		justifyContent: 'space-evenly',
 	},
 	textStyle: {
-		fontSize: 20,
+		fontSize: Platform.isPad ? 25 : 20,
 		fontWeight: '700',
-		marginLeft: 30,
+		// marginLeft: 30,
+		textAlign: 'center',
 	},
 	description: {
 		textAlign: 'center',
