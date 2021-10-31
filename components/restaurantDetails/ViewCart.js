@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Platform, StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native';
 import { useSelector } from 'react-redux';
 import OrderItem from './OrderItem';
+import { firebase, db } from '../../firebase/firebase';
 
-const ViewCart = () => {
+const ViewCart = ({ navigation }) => {
 	const [modalVisible, setModalVisible] = useState(false);
 	const { items, restaurantName } = useSelector((state) => state.cartReducer.selectedItems);
-	// console.log('items---->', items[0].price);
-	//console.log(restaurantName);
+
 	const total = items
 		.map((item) => Number(item.price.replace('£', '')))
 		.reduce((prev, curr) => prev + curr, 0);
@@ -16,6 +16,16 @@ const ViewCart = () => {
 		style: 'currency',
 		currency: 'EUR',
 	});
+	//Add orders to FireBase
+	const addOrderToFireBase = () => {
+		db.collection('orders').add({
+			items: items,
+			restaurantName: restaurantName,
+			createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+		});
+		setModalVisible(false);
+		navigation.navigate('OrderCompleted');
+	};
 
 	const checkCurrentModal = () => {
 		return (
@@ -29,6 +39,35 @@ const ViewCart = () => {
 						<View style={styles.subTotalContainer}>
 							<Text style={styles.subtotalText}>SubTotal</Text>
 							<Text>{totalUSD}</Text>
+						</View>
+						<View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+							<TouchableOpacity
+								style={{
+									backgroundColor: '#000',
+									marginTop: 20,
+									alignItems: 'center',
+									padding: 13,
+									borderRadius: 30,
+									width: 300,
+									position: 'relative',
+								}}
+								onPress={() => {
+									addOrderToFireBase();
+								}}
+							>
+								<Text style={{ color: 'silver', fontSize: 20 }}>Checkout</Text>
+								<Text
+									style={{
+										color: 'silver',
+										fontSize: 15,
+										position: 'absolute',
+										right: 10,
+										top: 17,
+									}}
+								>
+									{total ? totalUSD : ''}
+								</Text>
+							</TouchableOpacity>
 						</View>
 					</View>
 				</View>
